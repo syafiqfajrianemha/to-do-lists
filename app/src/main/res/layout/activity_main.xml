@@ -14,6 +14,8 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:clickable="true"
+        android:contentDescription="@string/button_add_todo"
+        android:focusable="true"
         app:backgroundTint="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,14 +30,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
-        android:drawableStart="@drawable/ic_featured_play_list"
         android:drawablePadding="5dp"
-        android:drawableTint="@color/orange"
         android:gravity="center_vertical"
-        android:text="To-do Lists"
+        android:text="@string/to_do_lists"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:drawableStartCompat="@drawable/ic_featured_play_list"
+        app:drawableTint="@color/orange"
         app:layout_constraintBottom_toTopOf="@+id/rvTodo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,5 +48,19 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:listitem="@layout/todo_item" />
+
+    <TextView
+        android:id="@+id/tvTodoEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/todo_empty"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

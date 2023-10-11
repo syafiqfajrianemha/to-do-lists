@@ -2,6 +2,8 @@ package com.emha.to_dolists
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -42,14 +44,15 @@ class MainActivity : AppCompatActivity() {
     private fun showListTodo() {
         binding.rvTodo.setHasFixedSize(true)
         binding.rvTodo.layoutManager = LinearLayoutManager(this)
-        todoModel.getNotes().observe(this, object : Observer<List<Todo>> {
-            override fun onChanged(t: List<Todo>?) {
-                if (t != null) {
-                    todoAdapter.setListTodo(t)
-                }
+        todoModel.getNotes().observe(this) { todo ->
+            if (todo.isNotEmpty()) {
+                todoAdapter.setListTodo(todo)
                 binding.rvTodo.adapter = todoAdapter
+                binding.tvTodoEmpty.visibility = View.GONE
+            } else {
+                binding.tvTodoEmpty.visibility = View.VISIBLE
             }
-        })
+        }
 
         todoAdapter.setOnItemClickCallback(object : TodoAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Todo) {
